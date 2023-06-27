@@ -1,0 +1,1 @@
+python scriptsCalculateModelFeatures.py .data_lux_jun2023hCLIC1output -o hCLIC1-feat.json.zip --ref_struct .data_lux_jun2023hCLIC1.pdb .data_lux_jun2023hCLIC11RK4B.pdb
