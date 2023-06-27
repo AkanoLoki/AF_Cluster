@@ -1,0 +1,41 @@
+hCLIC1
+1411 seqs removed for containing more than 25% gaps, 1790 remaining
+eps	n_clusters	n_not_clustered
+3.00	1	448
+3.50	2	445
+4.00	1	448
+4.50	1	448
+5.00	3	441
+5.50	5	436
+6.00	5	429
+6.50	10	389
+7.00	13	387
+7.50	15	372
+8.00	23	313
+8.50	27	266
+9.00	26	242
+9.50	21	200
+10.00	20	141
+10.50	17	128
+11.00	13	114
+11.50	13	110
+12.00	13	88
+12.50	15	74
+13.00	15	56
+13.50	11	59
+14.00	12	45
+14.50	15	33
+15.00	12	40
+15.50	14	24
+16.00	12	15
+16.50	10	7
+17.00	2	6
+17.50	2	1
+18.00	1	0
+Selected eps=8.50
+1790 total seqs
+91 clusters, 620 of 1790 not clustered (0.35)
+avg identity to query of unclustered: 0.38
+avg identity to query of clustered: 0.48
+wrote clustering data to subsampled_MSAs/hCLIC1_clustering_assignments.tsv
+wrote cluster metadata to subsampled_MSAs/hCLIC1_cluster_metadata.tsv
