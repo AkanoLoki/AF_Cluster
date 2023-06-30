@@ -164,19 +164,19 @@ if __name__=='__main__':
         cluster_metadata.append({'cluster_ind': clust, 'consensusSeq': cs, 'avg_lev_dist': '%.3f' % avg_dist_to_cs, 
             'avg_dist_to_query': '%.3f' % avg_dist_to_query, 'size': len(tmp)})
 
-        write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_'+"%03d" % clust+'.a3m', querySeq = seqs[0], oligomericState= numOligomer)
+        write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_'+"%03d" % clust+'.a3m', querySeq = seqs[0], oligomericState = args.n_mer)
 
     print('writing 10 size-10 uniformly sampled clusters')
     for i in range(args.n_controls):
        tmp = df.sample(n=10)
        tmp = pd.concat([query_, tmp], axis=0)
-       write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U10-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState= numOligomer) 
+       write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U10-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState = args.n_mer) 
     if len(df)>100:
         print('writing 10 size-100 uniformly sampled clusters')
         for i in range(args.n_controls):
             tmp = df.sample(n=100)
             tmp = pd.concat([query_, tmp], axis=0)
-            write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U100-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState= numOligomer)
+            write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U100-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState = args.n_mer)
 
     if args.run_PCA:
         lprint('Running PCA ...',f)
