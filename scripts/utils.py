@@ -14,8 +14,9 @@ def load_fasta(fil):
                 seqs.append(seq)
     return IDs, seqs
 
-def write_fasta(names, seqs, outfile='tmp.fasta'):
+def write_fasta(names, seqs, outfile='tmp.fasta',querySeq = '',oligomericState = 1):
         with open(outfile,'w') as f:
+                f.write("#%d	%d" % (len(querySeq), oligomericState))
                 for nm, seq in list(zip(names, seqs)):
                         f.write(">%s\n%s\n" % (nm, seq))
 

@@ -46,6 +46,7 @@ if __name__=='__main__':
     p.add_argument("--n_controls", action="store", default=10, type=int, help='Number of control msas to generate (Default 10)')
     p.add_argument('--verbose', action='store_true', help='Print cluster info as they are generated.')
 
+    p.add_argument("--n_mer", action='store', default=1, help='Oligomeric state for alphafold2 to predict (Default 1 = monomer)')
     p.add_argument('--scan', action='store_true', help='Select eps value on 1/4 of data, shuffled.')
     p.add_argument('--eps_val', action='store', type=float, help="Use single value for eps instead of scanning.")
     p.add_argument('--resample', action='store_true', help='If included, will resample the original MSA with replacement before writing.')
@@ -163,19 +164,19 @@ if __name__=='__main__':
         cluster_metadata.append({'cluster_ind': clust, 'consensusSeq': cs, 'avg_lev_dist': '%.3f' % avg_dist_to_cs, 
             'avg_dist_to_query': '%.3f' % avg_dist_to_query, 'size': len(tmp)})
 
-        write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_'+"%03d" % clust+'.a3m')
+        write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_'+"%03d" % clust+'.a3m', querySeq = seqs[0], oligomericState= numOligomer)
 
     print('writing 10 size-10 uniformly sampled clusters')
     for i in range(args.n_controls):
        tmp = df.sample(n=10)
        tmp = pd.concat([query_, tmp], axis=0)
-       write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U10-'+"%03d" % i +'.a3m') 
+       write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U10-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState= numOligomer) 
     if len(df)>100:
         print('writing 10 size-100 uniformly sampled clusters')
         for i in range(args.n_controls):
             tmp = df.sample(n=100)
             tmp = pd.concat([query_, tmp], axis=0)
-            write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U100-'+"%03d" % i +'.a3m')
+            write_fasta(tmp.SequenceName.tolist(), tmp.sequence.tolist(), outfile=args.o+'/'+args.keyword+'_U100-'+"%03d" % i +'.a3m', querySeq = seqs[0], oligomericState= numOligomer)
 
     if args.run_PCA:
         lprint('Running PCA ...',f)
